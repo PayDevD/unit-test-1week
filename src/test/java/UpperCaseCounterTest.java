@@ -1,9 +1,5 @@
-import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 public class UpperCaseCounterTest {
@@ -11,44 +7,38 @@ public class UpperCaseCounterTest {
     private UpperCaseCounter upperCaseCounter = new UpperCaseCounter();
 
     @Test
-    public void getNumberOfUpperCaseCharactersInString_return_0_for_null_input(){
+    public void 널체크() {
         String str = null;
 
-        int numberOfUpperCaseCharactersInString = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
-
-        assertThat(numberOfUpperCaseCharactersInString, is(0));
-        assertTrue(numberOfUpperCaseCharactersInString == 0);
+        int result = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
+        assertTrue(result == 0);
     }
 
     @Test
-    public void getNumberOfUpperCaseCharactersInString_return_0_for_empty_input() {
+    public void 빈값체크(){
         String str = "";
 
-        int numberOfUpperCaseCharactersInString = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
-
-        assertTrue(numberOfUpperCaseCharactersInString == 0);
+        int result = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
+        assertTrue (result == 0);
     }
 
     @Test
-    public void getNumberOfUpperCaseCharactersInString_return_10_for_ABCDEFGHIJ() {
-        String str = "ABCDEFGHIJ";
+    public void 대문자_ABC(){
+        String str = "ABC";
 
-        int numberOfUpperCaseCharactersInString = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
-
-        assertThat(numberOfUpperCaseCharactersInString , is(10));
-        assertTrue(numberOfUpperCaseCharactersInString == 10);
-        assertFalse(numberOfUpperCaseCharactersInString == 12);
+        int result = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
+        System.out.println("result :: " + result);
+        assertTrue(result == 3);
+        assertFalse(result == 2);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void shouldThrowExceptionWhenGetZeroIndex() {
-        new ArrayList<Object>().get(0);
-    }
+    @Test
+    public void 대소문자_ABCdefGHI(){
+        String str = "ABCdefGHI";
 
-    @Ignore
-    @Test(timeout = 5000)
-    public void testShouldRunInLimitedTime() throws InterruptedException {
-        Thread.sleep(4000);
-        System.out.println("제한된 시간 내에 수행되면 테스트 Passed!");
+        int result = upperCaseCounter.getNumberOfUpperCaseCharactersInString(str);
+        System.out.println("result :: " + result);
+        assertTrue(result == 6);
+        assertFalse(result == 5);
     }
 }
